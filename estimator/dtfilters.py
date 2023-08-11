@@ -87,6 +87,19 @@ class NoFilter(object):
     return z, z
 
 
+  #------------------------------ process ------------------------------
+  '''!
+  @brief    Apply the filter update process given a new measurement.
+
+  @param[in]    z   The measurement (set to None if not available).
+  '''
+  def process(self, z):
+
+    self.predict()
+    if (z is not None):
+      self.correct(z)
+
+
   #------------------------------ getState -----------------------------
   #
   '''!

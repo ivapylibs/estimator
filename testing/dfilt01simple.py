@@ -20,7 +20,7 @@ A = np.array( [[1, 0.5], [0, 1]])
 C = np.array( [[1, 0]] )
 L = df.calcGainByDARE(A, C, 0.5*np.identity(2), 0.15)
 
-x  = np.array([[1] ,[0.25]])
+x  = np.array([[1] ,[-0.25]])
 x0 = np.array([[0.9], [0.2]])
 
 
@@ -30,8 +30,9 @@ pEst = df.Linear(A, C, L, x0)
 for i in range(10):
   x = np.matmul(A, x)
 
-  pEst.predict()
-  pEst.correct( np.matmul(C,x) )
+  pEst.process( np.matmul(C,x) )
+
+  print((x, pEst.x_hat))
 
 
 #--[3] Print final error.
